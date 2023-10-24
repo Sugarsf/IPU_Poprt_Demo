@@ -28,7 +28,7 @@ class Detector():
         模型初始化这一步比较固定写法
         :return:
         """
-        runner = runtime.ModelRunner('executable.popef')
+        runner = runtime.ModelRunner(self.weights)
 
         # 获取模型输出信息
         outputs_info = runner.get_model_outputs()
@@ -139,7 +139,7 @@ def main(opt):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', nargs='+', type=str, default='../models/yolov5s-wang.onnx', help='onnx path(s)')
+    parser.add_argument('--weights', nargs='+', type=str, default='./executable.popef', help='onnx path(s)')
     parser.add_argument('--img', type=str, default='../models/nan.jpg', help='source')  # file/folder, 0 for webcam
     parser.add_argument('--img-size', type=int, default=640, help='inference size (pixels)')
     parser.add_argument('--conf-thres', type=float, default=0.25, help='object confidence threshold')
